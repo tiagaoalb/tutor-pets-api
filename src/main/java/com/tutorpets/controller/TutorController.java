@@ -1,6 +1,7 @@
 package com.tutorpets.controller;
 
 import com.tutorpets.model.Tutor;
+import com.tutorpets.model.dto.TutorDTO;
 import com.tutorpets.service.TutorService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,8 +25,10 @@ public class TutorController {
     }
 
     @GetMapping("/find")
-    public ResponseEntity<List<Tutor>> findAllTutors() {
-        return new ResponseEntity<>(tutorService.findAllTutors(), HttpStatus.OK);
+    public ResponseEntity<List<TutorDTO>> findAllTutors() {
+        List<Tutor> tutors = tutorService.findAllTutors();
+        List<TutorDTO> tutorDTOS = tutors.stream().map(Tutor::toDTO).toList();
+        return new ResponseEntity<>(tutorDTOS, HttpStatus.OK);
     }
 
     @GetMapping("/find/{id}")
