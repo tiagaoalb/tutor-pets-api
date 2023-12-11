@@ -31,4 +31,7 @@ public class TutorService {
         );
     }
 
+    public List<Tutor> findTutorByName(String name) {
+        return tutorRepository.findTutorByNameContainingIgnoreCase(name);
+    }
 }
