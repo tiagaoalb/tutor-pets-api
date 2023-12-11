@@ -1,8 +1,10 @@
 package com.tutorpets.model;
 
+import com.tutorpets.model.dto.TutorDTO;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "tutors")
@@ -17,13 +19,10 @@ public class Tutor {
     @Column(name = "birth_date")
     private LocalDate birthDate;
 
-    public Tutor() {
-    }
+    @OneToMany(mappedBy = "tutor", cascade = CascadeType.ALL)
+    private List<Pet> pets;
 
-    public Tutor(String name, String nickName, LocalDate birthDate) {
-        this.name = name;
-        this.nickName = nickName;
-        this.birthDate = birthDate;
+    public Tutor() {
     }
 
     public Long getId() {
@@ -57,4 +56,15 @@ public class Tutor {
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
+
+    public TutorDTO toDTO() {
+        return new TutorDTO(
+                this.getId(),
+                this.getName(),
+                this.getNickName(),
+                this.getBirthDate(),
+                this.pets != null ? this.pets.stream().map(Pet::petDTO).toList() : null
+        );
+    }
+
 }
