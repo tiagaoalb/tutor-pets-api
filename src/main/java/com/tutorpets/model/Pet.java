@@ -1,7 +1,5 @@
 package com.tutorpets.model;
 
-import com.fasterxml.jackson.annotation.JsonSetter;
-import com.tutorpets.model.dto.PetDTO;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -28,9 +26,6 @@ public class Pet {
     @ManyToOne
     @JoinColumn(name = "tutor_id")
     private Tutor tutor;
-
-    @Transient
-    private Long tutorId;
 
     public Pet() {
     }
@@ -99,30 +94,11 @@ public class Pet {
         this.vaccineType = vaccineType;
     }
 
-    public Long getTutorId() {
-        return tutorId;
+    public Tutor getTutor() {
+        return tutor;
     }
 
-    public void setTutorId(Long tutorId) {
-        this.tutorId = tutorId;
-    }
-
-    @JsonSetter("tutor")
-    public void setTutorById(Long tutorId) {
-        this.tutor = new Tutor();
-        this.tutor.setId(tutorId);
-    }
-
-    public PetDTO petDTO() {
-        return new PetDTO(
-                this.getId(),
-                this.getName(),
-                this.getPetBreed(),
-                this.getBirthDate(),
-                this.getColor(),
-                this.getWeight(),
-                this.getVaccineDate(),
-                this.getVaccineType()
-        );
+    public void setTutor(Tutor tutor) {
+        this.tutor = tutor;
     }
 }
