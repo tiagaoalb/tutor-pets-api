@@ -18,7 +18,8 @@ public class Tutor {
     @Column(name = "birth_date")
     private LocalDate birthDate;
 
-    @OneToMany(mappedBy = "tutor", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "tutor_id")
     private List<Pet> pets;
 
     public Tutor() {

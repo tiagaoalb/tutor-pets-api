@@ -1,15 +1,15 @@
 package com.tutorpets.service;
 
+import java.util.List;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
+
 import com.tutorpets.model.Pet;
 import com.tutorpets.model.dto.PetDTO;
 import com.tutorpets.model.dto.PetDTOMapper;
 import com.tutorpets.repository.PetRepository;
 import com.tutorpets.service.exception.DataNotFoundException;
-import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 public class PetService {
@@ -26,14 +26,12 @@ public class PetService {
         return petRepository.save(pet);
     }
 
-    @Transactional
     public List<PetDTO> findAllPets() {
         return petRepository.findAll()
                 .stream()
                 .map(petDTOMapper).toList();
     }
 
-    @Transactional
     public PetDTO findPetById(Long id) {
         return petRepository.findById(id)
                 .map(petDTOMapper)
