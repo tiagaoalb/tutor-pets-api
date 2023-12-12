@@ -1,6 +1,5 @@
 package com.tutorpets.model;
 
-import com.tutorpets.model.dto.TutorDTO;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -57,14 +56,11 @@ public class Tutor {
         this.birthDate = birthDate;
     }
 
-    public TutorDTO toDTO() {
-        return new TutorDTO(
-                this.getId(),
-                this.getName(),
-                this.getNickName(),
-                this.getBirthDate(),
-                this.pets != null ? this.pets.stream().map(Pet::petDTO).toList() : null
-        );
+    public List<Pet> getPets() {
+        return pets;
     }
 
+    public void setPets(List<Pet> pets) {
+        this.pets = pets;
+    }
 }

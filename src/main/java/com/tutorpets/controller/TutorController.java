@@ -26,18 +26,16 @@ public class TutorController {
 
     @GetMapping("/find")
     public ResponseEntity<List<TutorDTO>> findAllTutors() {
-        List<Tutor> tutors = tutorService.findAllTutors();
-        List<TutorDTO> tutorDTOS = tutors.stream().map(Tutor::toDTO).toList();
-        return new ResponseEntity<>(tutorDTOS, HttpStatus.OK);
+        return new ResponseEntity<>(tutorService.findAllTutors(), HttpStatus.OK);
     }
 
     @GetMapping("/find/{id}")
-    public ResponseEntity<Tutor> findTutorById(@PathVariable Long id) {
+    public ResponseEntity<TutorDTO> findTutorById(@PathVariable Long id) {
         return new ResponseEntity<>(tutorService.findTutorById(id), HttpStatus.OK);
     }
 
     @GetMapping("/find/name")
-    public ResponseEntity<List<Tutor>> findTutorByName(@RequestParam String name) {
+    public ResponseEntity<List<TutorDTO>> findTutorByName(@RequestParam String name) {
         return new ResponseEntity<>(tutorService.findTutorByName(name), HttpStatus.OK);
     }
 }
