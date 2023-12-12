@@ -1,6 +1,7 @@
 package com.tutorpets.controller;
 
 import com.tutorpets.model.Pet;
+import com.tutorpets.model.dto.PetDTO;
 import com.tutorpets.service.PetService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,17 +25,17 @@ public class PetController {
     }
 
     @GetMapping("/find")
-    public ResponseEntity<List<Pet>> findAllPets() {
+    public ResponseEntity<List<PetDTO>> findAllPets() {
         return new ResponseEntity<>(petService.findAllPets(), HttpStatus.OK);
     }
 
     @GetMapping("/find/{id}")
-    public ResponseEntity<Pet> findPetById(@PathVariable Long id) {
+    public ResponseEntity<PetDTO> findPetById(@PathVariable Long id) {
         return new ResponseEntity<>(petService.findPetById(id), HttpStatus.OK);
     }
 
     @GetMapping("/find/name")
-    public ResponseEntity<List<Pet>> findPetByName(@RequestParam String name) {
+    public ResponseEntity<List<PetDTO>> findPetByName(@RequestParam String name) {
         return new ResponseEntity<>(petService.findPetByName(name), HttpStatus.OK);
     }
 }
