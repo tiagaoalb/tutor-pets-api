@@ -1,15 +1,15 @@
 package com.tutorpets.service;
 
+import java.util.List;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
+
 import com.tutorpets.model.Tutor;
 import com.tutorpets.model.dto.TutorDTO;
 import com.tutorpets.model.dto.TutorDTOMapper;
 import com.tutorpets.repository.TutorRepository;
 import com.tutorpets.service.exception.DataNotFoundException;
-import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 public class TutorService {
@@ -26,14 +26,12 @@ public class TutorService {
         return tutorRepository.save(tutor);
     }
 
-    @Transactional
     public List<TutorDTO> findAllTutors() {
         return tutorRepository.findAll()
                 .stream()
                 .map(tutorDTOMapper).toList();
     }
 
-    @Transactional
     public TutorDTO findTutorById(Long id) {
         return tutorRepository.findById(id)
                 .map(tutorDTOMapper)

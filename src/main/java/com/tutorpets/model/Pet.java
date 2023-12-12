@@ -23,10 +23,6 @@ public class Pet {
     @Column(name = "vaccine_type")
     private String vaccineType;
 
-    @ManyToOne
-    @JoinColumn(name = "tutor_id")
-    private Tutor tutor;
-
     public Pet() {
     }
 
@@ -94,11 +90,5 @@ public class Pet {
         this.vaccineType = vaccineType;
     }
 
-    public Tutor getTutor() {
-        return tutor;
-    }
-
-    public void setTutor(Tutor tutor) {
-        this.tutor = tutor;
-    }
+   
 }
