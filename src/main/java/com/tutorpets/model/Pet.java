@@ -23,7 +23,7 @@ public class Pet {
     @Column(name = "vaccine_type")
     private String vaccineType;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tutor_id")
     private Tutor tutor;
 
