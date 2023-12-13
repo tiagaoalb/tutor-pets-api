@@ -9,5 +9,7 @@ import java.util.List;
 @Repository
 public interface TutorRepository extends JpaRepository<Tutor, Long> {
 
+    Tutor findTutorByName(String tutorName);
+
     List<Tutor> findTutorByNameContainingIgnoreCase(String name);
 }
