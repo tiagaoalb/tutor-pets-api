@@ -10,6 +10,7 @@ public record PetDTO(
         String color,
         Double weight,
         LocalDate vaccineDate,
-        String vaccineType
+        String vaccineType,
+        String tutorName
 ) {
 }

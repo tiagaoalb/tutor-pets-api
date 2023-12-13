@@ -17,7 +17,8 @@ public class PetDTOMapper implements Function<Pet, PetDTO> {
                 pet.getColor(),
                 pet.getWeight(),
                 pet.getVaccineDate(),
-                pet.getVaccineType()
+                pet.getVaccineType(),
+                pet.getTutor().getName()
         );
     }
 }
