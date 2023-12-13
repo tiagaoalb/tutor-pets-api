@@ -20,8 +20,8 @@ public class PetController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Pet> addPet(@RequestBody Pet pet) {
-        return new ResponseEntity<>(petService.addPet(pet), HttpStatus.CREATED);
+    public ResponseEntity<Pet> addPet(@RequestBody PetDTO petDTO) {
+        return new ResponseEntity<>(petService.addPet(petDTO), HttpStatus.CREATED);
     }
 
     @GetMapping("/find")
