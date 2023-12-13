@@ -1,6 +1,5 @@
 package com.tutorpets.controller;
 
-import com.tutorpets.model.Pet;
 import com.tutorpets.model.dto.PetDTO;
 import com.tutorpets.service.PetService;
 import org.springframework.http.HttpStatus;
@@ -20,7 +19,7 @@ public class PetController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Pet> addPet(@RequestBody PetDTO petDTO) {
+    public ResponseEntity<PetDTO> addPet(@RequestBody PetDTO petDTO) {
         return new ResponseEntity<>(petService.addPet(petDTO), HttpStatus.CREATED);
     }
 

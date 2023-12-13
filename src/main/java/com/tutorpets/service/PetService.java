@@ -25,7 +25,7 @@ public class PetService {
         this.petDTOMapper = petDTOMapper;
     }
 
-    public Pet addPet(PetDTO petDTO) {
+    public PetDTO addPet(PetDTO petDTO) {
         Pet pet = new Pet();
         pet.setName(petDTO.name());
         pet.setPetBreed(petDTO.petBreed());
@@ -38,7 +38,10 @@ public class PetService {
         Tutor tutor = tutorRepository.findTutorByName(petDTO.tutorName());
 
         pet.setTutor(tutor);
-        return petRepository.save(pet);
+
+        pet = petRepository.save(pet);
+
+        return petDTOMapper.apply(pet);
     }
 
     public List<PetDTO> findAllPets() {
