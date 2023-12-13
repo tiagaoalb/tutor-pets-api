@@ -24,7 +24,8 @@ public class TutorDTOMapper implements Function<Tutor, TutorDTO> {
                                 pet.getColor(),
                                 pet.getWeight(),
                                 pet.getVaccineDate(),
-                                pet.getVaccineType()
+                                pet.getVaccineType(),
+                                pet.getTutor().getName()
                         )).toList());
     }
 }
