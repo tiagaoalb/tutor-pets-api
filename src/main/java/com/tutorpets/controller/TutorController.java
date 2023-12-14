@@ -1,6 +1,5 @@
 package com.tutorpets.controller;
 
-import com.tutorpets.model.Tutor;
 import com.tutorpets.model.dto.TutorDTO;
 import com.tutorpets.service.TutorService;
 import org.springframework.http.HttpStatus;
@@ -8,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/tutors")
@@ -20,8 +20,8 @@ public class TutorController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Tutor> addTutor(@RequestBody Tutor tutor) {
-        return new ResponseEntity<>(tutorService.addTutor(tutor), HttpStatus.CREATED);
+    public ResponseEntity<TutorDTO> addTutor(@RequestBody TutorDTO tutorDTO) {
+        return new ResponseEntity<>(tutorService.addTutor(tutorDTO), HttpStatus.CREATED);
     }
 
     @GetMapping("/find")
@@ -30,7 +30,7 @@ public class TutorController {
     }
 
     @GetMapping("/find/{id}")
-    public ResponseEntity<TutorDTO> findTutorById(@PathVariable Long id) {
+    public ResponseEntity<Optional<TutorDTO>> findTutorById(@PathVariable Long id) {
         return new ResponseEntity<>(tutorService.findTutorById(id), HttpStatus.OK);
     }
 

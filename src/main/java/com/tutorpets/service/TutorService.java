@@ -4,12 +4,10 @@ import com.tutorpets.model.Tutor;
 import com.tutorpets.model.dto.TutorDTO;
 import com.tutorpets.model.dto.TutorDTOMapper;
 import com.tutorpets.repository.TutorRepository;
-import com.tutorpets.service.exception.DataNotFoundException;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TutorService {
@@ -22,24 +20,25 @@ public class TutorService {
         this.tutorDTOMapper = tutorDTOMapper;
     }
 
-    public Tutor addTutor(Tutor tutor) {
-        return tutorRepository.save(tutor);
+    public TutorDTO addTutor(TutorDTO tutorDTO) {
+        Tutor tutor = new Tutor();
+        tutor.setName(tutorDTO.name());
+        tutor.setNickName(tutorDTO.nickName());
+        tutor.setBirthDate(tutorDTO.birthDate());
+
+        tutor = tutorRepository.save(tutor);
+        return tutorDTOMapper.apply(tutor);
     }
 
-    @Transactional
     public List<TutorDTO> findAllTutors() {
-        return tutorRepository.findAll()
+        return tutorRepository.findAllTutors()
                 .stream()
                 .map(tutorDTOMapper).toList();
     }
 
-    @Transactional
-    public TutorDTO findTutorById(Long id) {
-        return tutorRepository.findById(id)
-                .map(tutorDTOMapper)
-                .orElseThrow(
-                () -> new DataNotFoundException(HttpStatus.NOT_FOUND, "Tutor not found with id" + id)
-        );
+    public Optional<TutorDTO> findTutorById(Long id) {
+        Optional<Tutor> tutorOptional = Optional.ofNullable(tutorRepository.findTutorById(id));
+        return tutorOptional.map(tutorDTOMapper);
     }
 
     public List<TutorDTO> findTutorByName(String name) {
