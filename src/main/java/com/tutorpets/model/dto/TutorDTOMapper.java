@@ -3,10 +3,19 @@ package com.tutorpets.model.dto;
 import com.tutorpets.model.Tutor;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.Optional;
 import java.util.function.Function;
 
 @Service
 public class TutorDTOMapper implements Function<Tutor, TutorDTO> {
+
+    private final PetDTOMapper petDTOMapper;
+
+    public TutorDTOMapper(PetDTOMapper petDTOMapper) {
+        this.petDTOMapper = petDTOMapper;
+    }
+
     @Override
     public TutorDTO apply(Tutor tutor) {
         return new TutorDTO(
@@ -14,18 +23,10 @@ public class TutorDTOMapper implements Function<Tutor, TutorDTO> {
                 tutor.getName(),
                 tutor.getNickName(),
                 tutor.getBirthDate(),
-                tutor.getPets()
+                Optional.ofNullable(tutor.getPets())
+                        .orElse(Collections.emptyList())
                         .stream()
-                        .map(pet -> new PetDTO(
-                                pet.getId(),
-                                pet.getName(),
-                                pet.getPetBreed(),
-                                pet.getBirthDate(),
-                                pet.getColor(),
-                                pet.getWeight(),
-                                pet.getVaccineDate(),
-                                pet.getVaccineType(),
-                                pet.getTutor().getName()
-                        )).toList());
+                        .map(petDTOMapper)
+                        .toList());
     }
 }
