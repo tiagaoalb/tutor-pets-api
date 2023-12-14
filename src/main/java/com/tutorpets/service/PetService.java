@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PetService {
@@ -45,17 +46,16 @@ public class PetService {
     }
 
     public List<PetDTO> findAllPets() {
-        return petRepository.findAll()
+        return petRepository.findAllPets()
                 .stream()
                 .map(petDTOMapper).toList();
     }
 
-    public PetDTO findPetById(Long id) {
-        return petRepository.findById(id)
-                .map(petDTOMapper)
+    public Optional<PetDTO> findPetById(Long petId) {
+        Optional<Pet> petOptional = Optional.ofNullable(petRepository.findPetById(petId));
+        return Optional.ofNullable(petOptional.map(petDTOMapper)
                 .orElseThrow(
-                () -> new DataNotFoundException(HttpStatus.NOT_FOUND, "Pet not found with id" + id)
-        );
+                        () -> new DataNotFoundException(HttpStatus.NOT_FOUND, "Pet not found with id" + petId)));
     }
 
     public List<PetDTO> findPetByName(String name) {

@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/pets")
@@ -29,7 +30,7 @@ public class PetController {
     }
 
     @GetMapping("/find/{id}")
-    public ResponseEntity<PetDTO> findPetById(@PathVariable Long id) {
+    public ResponseEntity<Optional<PetDTO>> findPetById(@PathVariable Long id) {
         return new ResponseEntity<>(petService.findPetById(id), HttpStatus.OK);
     }
 
