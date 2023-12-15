@@ -38,4 +38,16 @@ public class PetController {
     public ResponseEntity<List<PetDTO>> findPetByName(@RequestParam String name) {
         return new ResponseEntity<>(petService.findPetByName(name), HttpStatus.OK);
     }
+
+    @PatchMapping("/update/{id}/newName")
+    public ResponseEntity<Void> updatePetNameById(@PathVariable Long id, @RequestParam String newName) {
+        petService.updatePetNameById(id, newName);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete/{id}/")
+    public ResponseEntity<Void> deletePetById(@PathVariable Long id) {
+        petService.deletePetById(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }

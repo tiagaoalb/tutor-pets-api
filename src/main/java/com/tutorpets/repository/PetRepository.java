@@ -2,6 +2,7 @@ package com.tutorpets.repository;
 
 import com.tutorpets.model.Pet;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -33,4 +34,14 @@ public interface PetRepository extends JpaRepository<Pet, Long> {
             where p.id = :petId
             """)
     Pet findPetById(@Param("petId") Long petId);
+
+    @Modifying
+    @Query("""
+            update Pet p
+            set p.name = :newName
+            where p.id = :petId
+            """)
+    void updatePetNameById(@Param("petId") Long petId, @Param("newName") String newName);
+
+    void deletePetById(Long petId);
 }
