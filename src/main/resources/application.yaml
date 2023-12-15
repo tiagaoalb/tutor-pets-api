@@ -1,6 +1,7 @@
 spring:
   jpa:
     open-in-view: false
+    hibernate.ddl-auto: create-drop
   main:
     banner-mode: 'off'
   datasource:
