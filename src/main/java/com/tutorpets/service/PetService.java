@@ -20,7 +20,7 @@ public class PetService {
     private final PetRepository petRepository;
     private final TutorRepository tutorRepository;
     private final PetDTOMapper petDTOMapper;
-    private static final String PET_NOT_FOUND = "Pet not found with id";
+    private static final String PET_NOT_FOUND = "Pet not found with id ";
 
     public PetService(PetRepository petRepository, TutorRepository tutorRepository, PetDTOMapper petDTOMapper) {
         this.petRepository = petRepository;
@@ -75,6 +75,7 @@ public class PetService {
         petRepository.updatePetNameById(id, newName);
     }
 
+    @Transactional
     public void deletePetById(Long petId) {
         if (!petRepository.existsById(petId)) {
             throw new DataNotFoundException(HttpStatus.NOT_FOUND, PET_NOT_FOUND + petId);
