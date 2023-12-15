@@ -45,7 +45,7 @@ public class PetController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{id}/")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deletePetById(@PathVariable Long id) {
         petService.deletePetById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
