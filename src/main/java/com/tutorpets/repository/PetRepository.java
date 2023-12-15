@@ -14,7 +14,7 @@ public interface PetRepository extends JpaRepository<Pet, Long> {
     @Query("""
             select p
             from Pet p
-            right join fetch p.tutors t
+            left join fetch p.tutor
             where lower(p.name) like lower(concat('%', :name, '%'))
             """)
     List<Pet> findPetByNameContainingIgnoreCase(String name);
@@ -22,14 +22,14 @@ public interface PetRepository extends JpaRepository<Pet, Long> {
     @Query("""
             select p
             from Pet p
-            right join fetch p.tutors t
+            left join fetch p.tutor
             """)
     List<Pet> findAllPets();
 
     @Query("""
             select p
             from Pet p
-            right join fetch p.tutors t
+            left join fetch p.tutor
             where p.id = :petId
             """)
     Pet findPetById(@Param("petId") Long petId);
