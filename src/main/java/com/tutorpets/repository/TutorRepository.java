@@ -35,4 +35,6 @@ public interface TutorRepository extends JpaRepository<Tutor, Long> {
             where t.id = :tutorId
             """)
     Tutor findTutorById(@Param("tutorId") Long tutorId);
+
+    boolean existsByName(String tutorName);
 }

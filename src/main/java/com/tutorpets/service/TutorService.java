@@ -23,6 +23,11 @@ public class TutorService {
     }
 
     public TutorDTO addTutor(TutorDTO tutorDTO) {
+        var tutorName = tutorDTO.name();
+        if (tutorRepository.existsByName(tutorName)) {
+            throw new DataNotFoundException(HttpStatus.CONFLICT, "Tutor with name " + tutorName + " already exists.");
+        }
+
         Tutor tutor = new Tutor();
         tutor.setName(tutorDTO.name());
         tutor.setNickName(tutorDTO.nickName());
@@ -46,8 +51,10 @@ public class TutorService {
     }
 
     public List<TutorDTO> findTutorByName(String name) {
-        return tutorRepository.findTutorByNameContainingIgnoreCase(name)
-                .stream()
-                .map(tutorDTOMapper).toList();
+        var tutors = tutorRepository.findTutorByNameContainingIgnoreCase(name);
+        if (tutors.isEmpty()) {
+            throw new DataNotFoundException(HttpStatus.NOT_FOUND, "Tutor with name " + name + " was not found.");
+        }
+        return tutors.stream().map(tutorDTOMapper).toList();
     }
 }
