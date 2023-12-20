@@ -1,6 +1,8 @@
 package com.tutorpets.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 
@@ -11,20 +13,36 @@ public class Pet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotNull
+    @NotEmpty
     private String name;
+    @NotNull
+    @NotEmpty
     @Column(name = "pet_breed")
     private String petBreed;
+    @NotNull
+    @NotEmpty
     @Column(name = "birth_date")
     private LocalDate birthDate;
+    @NotNull
+    @NotEmpty
     private String color;
+    @NotNull
+    @NotEmpty
     private Double weight;
+    @NotNull
+    @NotEmpty
     @Column(name = "vaccine_date")
     private LocalDate vaccineDate;
+    @NotNull
+    @NotEmpty
     @Column(name = "vaccine_type")
     private String vaccineType;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tutor_id")
+    @NotNull
+    @NotEmpty
     private Tutor tutor;
 
     public Long getId() {
