@@ -27,9 +27,6 @@ public class Pet {
     @JoinColumn(name = "tutor_id")
     private Tutor tutor;
 
-    public Pet() {
-    }
-
     public Long getId() {
         return id;
     }

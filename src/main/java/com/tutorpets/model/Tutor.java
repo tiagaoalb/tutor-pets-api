@@ -21,9 +21,6 @@ public class Tutor {
     @OneToMany(mappedBy = "tutor", cascade = CascadeType.ALL)
     private List<Pet> pets;
 
-    public Tutor() {
-    }
-
     public Long getId() {
         return id;
     }
