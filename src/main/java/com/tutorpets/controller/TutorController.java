@@ -2,6 +2,7 @@ package com.tutorpets.controller;
 
 import com.tutorpets.model.dto.TutorDTO;
 import com.tutorpets.service.TutorService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class TutorController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<TutorDTO> addTutor(@RequestBody TutorDTO tutorDTO) {
+    public ResponseEntity<TutorDTO> addTutor(@Valid @RequestBody TutorDTO tutorDTO) {
         return new ResponseEntity<>(tutorService.addTutor(tutorDTO), HttpStatus.CREATED);
     }
 

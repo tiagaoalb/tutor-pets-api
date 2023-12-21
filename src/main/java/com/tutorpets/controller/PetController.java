@@ -2,6 +2,7 @@ package com.tutorpets.controller;
 
 import com.tutorpets.model.dto.PetDTO;
 import com.tutorpets.service.PetService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class PetController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<PetDTO> addPet(@RequestBody PetDTO petDTO) {
+    public ResponseEntity<PetDTO> addPet(@Valid @RequestBody PetDTO petDTO) {
         return new ResponseEntity<>(petService.addPet(petDTO), HttpStatus.CREATED);
     }
 
