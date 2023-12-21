@@ -2,6 +2,7 @@ package com.tutorpets.model;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
@@ -17,7 +18,7 @@ public class Pet {
     @Column(name = "birth_date")
     private LocalDate birthDate;
     private String color;
-    private Double weight;
+    private BigDecimal weight;
     @Column(name = "vaccine_date")
     private LocalDate vaccineDate;
     @Column(name = "vaccine_type")
@@ -67,11 +68,11 @@ public class Pet {
         this.color = color;
     }
 
-    public Double getWeight() {
+    public BigDecimal getWeight() {
         return weight;
     }
 
-    public void setWeight(Double weight) {
+    public void setWeight(BigDecimal weight) {
         this.weight = weight;
     }
 
