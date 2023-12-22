@@ -1,4 +1,4 @@
-package com.tutorpets.model.dto;
+package com.tutorpets.dto;
 
 import com.tutorpets.model.Tutor;
 import org.springframework.stereotype.Service;

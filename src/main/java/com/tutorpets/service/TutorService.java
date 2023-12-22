@@ -1,8 +1,8 @@
 package com.tutorpets.service;
 
 import com.tutorpets.model.Tutor;
-import com.tutorpets.model.dto.TutorDTO;
-import com.tutorpets.model.dto.TutorDTOMapper;
+import com.tutorpets.dto.TutorDTO;
+import com.tutorpets.dto.TutorDTOMapper;
 import com.tutorpets.repository.TutorRepository;
 import com.tutorpets.service.exception.DataNotFoundException;
 import org.springframework.http.HttpStatus;

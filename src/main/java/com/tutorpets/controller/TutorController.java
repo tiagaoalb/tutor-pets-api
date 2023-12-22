@@ -1,6 +1,6 @@
 package com.tutorpets.controller;
 
-import com.tutorpets.model.dto.TutorDTO;
+import com.tutorpets.dto.TutorDTO;
 import com.tutorpets.service.TutorService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;

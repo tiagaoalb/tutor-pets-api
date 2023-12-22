@@ -2,8 +2,8 @@ package com.tutorpets.service;
 
 import com.tutorpets.model.Pet;
 import com.tutorpets.model.Tutor;
-import com.tutorpets.model.dto.PetDTO;
-import com.tutorpets.model.dto.PetDTOMapper;
+import com.tutorpets.dto.PetDTO;
+import com.tutorpets.dto.PetDTOMapper;
 import com.tutorpets.repository.PetRepository;
 import com.tutorpets.repository.TutorRepository;
 import com.tutorpets.service.exception.DataNotFoundException;

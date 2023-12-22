@@ -1,6 +1,6 @@
 package com.tutorpets.controller;
 
-import com.tutorpets.model.dto.PetDTO;
+import com.tutorpets.dto.PetDTO;
 import com.tutorpets.service.PetService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
