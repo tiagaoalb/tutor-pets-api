@@ -1,5 +1,6 @@
-package com.tutorpets.model.dto;
+package com.tutorpets.dto;
 
+import com.tutorpets.annotation.NoNumbers;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -13,9 +14,11 @@ public record TutorDTO (
         Long id,
         @NotNull(message = "name is mandatory")
         @NotBlank(message = "name is mandatory")
+        @NoNumbers(message = "The field name must not contain numerical characters")
         String name,
         @NotNull(message = "nickName is mandatory")
         @NotBlank(message = "nickName is mandatory")
+        @NoNumbers(message = "The field nickName must not contain numerical characters")
         String nickName,
         @NotNull(message = "birthDate is mandatory")
         @Past
