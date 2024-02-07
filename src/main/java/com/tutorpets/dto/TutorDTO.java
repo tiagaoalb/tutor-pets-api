@@ -24,6 +24,5 @@ public record TutorDTO (
         @Past
         LocalDate birthDate,
         List<PetDTO> pets
-        // test
 ) {
 }
