@@ -9,9 +9,9 @@ spring:
     driverClassName: org.h2.Driver
     username: sa
     password: sa
-logging:
-  level:
-    root: warn
+#logging:
+#  level:
+#    root: warn
 server:
   error:
     include-stacktrace: on_param
